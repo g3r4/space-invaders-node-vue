@@ -8,9 +8,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/invasions/id/:id', function(req, res){
-
     api.findById(req, res);
-    
+});
+
+router.get('/invasions/q', function(req, res){
+    api.findByQuery(req, res);
+});
+
+router.get('/invasions/when/:year/:month/:day', function(req, res){
+    api.findByDay(req, res);
 });
 
 module.exports = router;
