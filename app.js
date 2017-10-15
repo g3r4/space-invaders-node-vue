@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var setupInvasions = require('./routes/setupInvasions');
+var api = require('./routes/apiRoutes');
 
 var config = require('./config/config');
 
@@ -16,10 +17,7 @@ var app = express();
 
 // Database connection
 mongoose.Promise = global.Promise;
-mongoose.connect(config.getDbConnectionString(function(err, result){
-  if (err)
-  console.log ('error', err.message, err.stack)
-}), {
+mongoose.connect(config.getDbConnectionString(), {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useMongoClient: true
@@ -39,7 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/api/setupInvasions', setupInvasions);
+app.use('/api', setupInvasions);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
