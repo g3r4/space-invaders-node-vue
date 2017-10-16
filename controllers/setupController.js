@@ -1,6 +1,8 @@
 var Invasions = require('../models/invasionModel');
+var bodyParser = require('body-parser');
 
-module.exports = function(){
+module.exports = {
+        Initialize: function(req, res){
         //seed database
         var starterInvasions = [
             {
@@ -103,7 +105,8 @@ module.exports = function(){
             }
         ];
         Invasions.create(starterInvasions, function(err, results){
-            
+            if (err) throw err;
+            res.send(results);
         })
-        return starterInvasions;
-};
+    }
+}

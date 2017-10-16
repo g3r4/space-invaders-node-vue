@@ -32,5 +32,34 @@ module.exports = {
             if (err) throw err;
             res.send(invasions);
         }).sort({when: 1})
+    },
+    createOrUpdateInvasion: function(req, res){
+        if (req.body.id){
+            Invasions.findByIdAndUpdate(req.body.id, {
+                email: req.body.email, invasion: req.body.invasion, location: req.body.location, when: req.body.when, confirmed: false 
+            }, function(err, todo){
+                if (err) throw err;
+                res.send('Success');
+            });
+        }
+        else {
+            var newInvasion = Invasions({
+                email: req.body.email,
+                invasion: req.body.invasion,
+                location: req.body.location,
+                when: req.body.when,
+                confirmed: false
+            });
+            newInvasion.save(function(err){
+                if (err) throw err;
+                res.send('Success');
+            });
+        }
+    },
+    deleteInvasionById: function(req, res){
+        Invasions.findByIdAndRemove(req.body.id, function(err){
+            if (err) throw err;
+            res.send('Success');
+        });
     }
 }
