@@ -19,7 +19,7 @@ router.get('/invasions/q', function(req, res){
     api.findByQuery(req, res);
 });
 
-router.get('/invasions/when/:year/:month/:day', function(req, res){
+router.get('/invasions/:year/:month/:day', function(req, res){
     api.findByDay(req, res);
 });
 
