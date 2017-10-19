@@ -40,9 +40,9 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/api/invasions/:year/:month/:day",
+    "url": "/api/invasions/:year/:month/:day?space=",
     "title": "Request Invasions happening in a day",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "name": "GetInvasionByDay",
     "group": "GetInvasions",
     "parameter": {
@@ -54,9 +54,37 @@ define({ "api": [
             "optional": false,
             "field": "year",
             "description": "<p>Year of the invasion.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "month",
+            "description": "<p>Month of the invasion.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "day",
+            "description": "<p>Day of the invasion.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "space",
+            "description": "<p>Space invaded. (optional query argument)</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "/api/invasions/2017/11/15?space=Lounge",
+          "type": "url"
+        }
+      ]
     },
     "success": {
       "fields": {
@@ -86,8 +114,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "location",
-            "description": "<p>Location of the invasion.</p>"
+            "field": "space",
+            "description": "<p>Space invaded.</p>"
           },
           {
             "group": "Success 200",
@@ -108,7 +136,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"59e41272e6ab8b208636a64f\",\n     \"email\": \"new.employee@company.com\",\n     \"invasion\": \"New employee introduction workshop\",\n     \"location\": \"Lounge\",\n     \"when\": \"2017-11-18T09:00:00.000Z\",\n     \"confirmed\": false,\n     \"__v\": 0\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"59e41272e6ab8b208636a64f\",\n     \"email\": \"new.employee@company.com\",\n     \"invasion\": \"New employee introduction workshop\",\n     \"space\": \"Lounge\",\n     \"when\": \"2017-11-15T09:00:00.000Z\",\n     \"confirmed\": false,\n     \"__v\": 0\n}",
           "type": "json"
         }
       ]
@@ -139,7 +167,7 @@ define({ "api": [
     "type": "get",
     "url": "/api/invasions/id/:id",
     "title": "Request Invasion information by ID",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "name": "GetInvasionById",
     "group": "GetInvasions",
     "parameter": {
@@ -183,8 +211,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "location",
-            "description": "<p>Location of the invasion.</p>"
+            "field": "space",
+            "description": "<p>Space invaded.</p>"
           },
           {
             "group": "Success 200",
@@ -205,7 +233,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"59e41272e6ab8b208636a64f\",\n     \"email\": \"new.employee@company.com\",\n     \"invasion\": \"New employee introduction workshop\",\n     \"location\": \"Lounge\",\n     \"when\": \"2017-11-18T09:00:00.000Z\",\n     \"confirmed\": false,\n     \"__v\": 0\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"59e41272e6ab8b208636a64f\",\n     \"email\": \"new.employee@company.com\",\n     \"invasion\": \"New employee introduction workshop\",\n     \"space\": \"Lounge\",\n     \"when\": \"2017-11-18T09:00:00.000Z\",\n     \"confirmed\": false,\n     \"__v\": 0\n}",
           "type": "json"
         }
       ]
@@ -234,9 +262,9 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/api/invasions/q?email=&invasion=&location=&when=&confirmed",
+    "url": "/api/invasions?email=&invasion=&space=&when=&confirmed",
     "title": "Request Invasions via query",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "name": "GetInvasionByQuery",
     "group": "GetInvasions",
     "parameter": {
@@ -260,8 +288,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "location",
-            "description": "<p>Location of the invasion. (optional)</p>"
+            "field": "space",
+            "description": "<p>Space invaded. (optional)</p>"
           },
           {
             "group": "Parameter",
@@ -282,7 +310,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "/api/invasions/q?email=new.employee@company.com&invasion=&location=Lounge&when=&confirmed",
+          "content": "/api/invasion?email=new.employee@company.com&invasion=&space=Lounge&when=&confirmed",
           "type": "url"
         }
       ]
@@ -315,8 +343,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "location",
-            "description": "<p>Location of the invasion.</p>"
+            "field": "space",
+            "description": "<p>Space invaded.</p>"
           },
           {
             "group": "Success 200",
@@ -337,7 +365,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 200 OK\n [\n      {\n           \"_id\": \"59e41163e6ab8b208636a641\",\n           \"email\": \"new.employee@company.com\",\n          \"invasion\": \"Company website meeting\",\n          \"location\": \"Conference room\",\n          \"when\": \"2017-11-15T09:00:00.000Z\",\n          \"confirmed\": true,\n           \"__v\": 0\n      },\n      {\n          \"_id\": \"59e41163e6ab8b208636a642\",\n          \"email\": \"new.employee@company.com\",\n          \"invasion\": \"Company website meeting\",\n          \"location\": \"Conference room\",\n          \"when\": \"2017-11-15T09:30:00.000Z\",\n          \"confirmed\": true,\n          \"__v\": 0\n      }\n]",
+          "content": " HTTP/1.1 200 OK\n [\n      {\n           \"_id\": \"59e41163e6ab8b208636a641\",\n           \"email\": \"new.employee@company.com\",\n          \"invasion\": \"Company website meeting\",\n          \"space\": \"Conference room\",\n          \"when\": \"2017-11-15T09:00:00.000Z\",\n          \"confirmed\": true,\n           \"__v\": 0\n      },\n      {\n          \"_id\": \"59e41163e6ab8b208636a642\",\n          \"email\": \"new.employee@company.com\",\n          \"invasion\": \"Company website meeting\",\n          \"space\": \"Conference room\",\n          \"when\": \"2017-11-15T09:30:00.000Z\",\n          \"confirmed\": true,\n          \"__v\": 0\n      }\n]",
           "type": "json"
         }
       ]
@@ -365,10 +393,60 @@ define({ "api": [
     "groupTitle": "GetInvasions"
   },
   {
+    "type": "get",
+    "url": "/api/spaces",
+    "title": "Get spaces defined on config.json",
+    "version": "0.1.0",
+    "name": "GetSpaces",
+    "group": "GetSpaces",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Spaces unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>ID of the spaces Array.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "spaces",
+            "description": "<p>Spaces array.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"59e41272e6ab8b208636a64f\",\n     \"spaces\": [\"Lounge\",\"Conference room\", \"Open space\"],\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "controllers/apiController.js",
+    "groupTitle": "GetSpaces"
+  },
+  {
     "type": "post",
     "url": "/api/invasions",
     "title": "Create or update an invasion",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "name": "CreateOrUpdateInvasion",
     "group": "PostInvasion",
     "parameter": {
@@ -386,12 +464,12 @@ define({ "api": [
       "examples": [
         {
           "title": "Create-Example:",
-          "content": "{\n    \"email\": \"new.employee@company.com\",\n    \"invasion\": \"New employee introduction workshop\",\n    \"location\": \"Lounge\",\n    \"when\": \"2017-11-18T09:00:00.000Z\"\n}",
+          "content": "{\n    \"email\": \"new.employee@company.com\",\n    \"invasion\": \"New employee introduction workshop\",\n    \"space\": \"Lounge\",\n    \"when\": \"2017-11-18T09:00:00.000Z\"\n}",
           "type": "json"
         },
         {
           "title": "Update-Example:",
-          "content": "{\n    \"id\": \"59e2361517109c3cba2febe6\",\n    \"email\": \"someone.else@company.com\",\n    \"invasion\": \"I need no introductions\",\n    \"location\": \"Go karts\",\n    \"when\": \"2017-11-18T09:30:00.000Z\"\n}",
+          "content": "{\n    \"id\": \"59e2361517109c3cba2febe6\",\n    \"email\": \"someone.else@company.com\",\n    \"invasion\": \"I need no introductions\",\n    \"space\": \"Go karts\",\n    \"when\": \"2017-11-18T09:30:00.000Z\"\n}",
           "type": "json"
         }
       ]
