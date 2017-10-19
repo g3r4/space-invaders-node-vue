@@ -6,12 +6,15 @@ Get ready to invade your spaces!
 
 1. Clone the repository
 2. To get a faster setup create a new account on mlab.com add a new database and usename for that database
-3. Be sure to add a config.json file inside the config folder with your database details ej:
+3. Be sure to add a config.json file inside the config folder with your database details and at least one space (very important!) example:
 ```json
 {
     "uname": "yourUserName",
     "pwd": "yourPassword",
-    "dbinstance": "@dsxxxxx.mlab.com:xxxxx/databasename"
+    "dbinstance": "@dsxxxxx.mlab.com:xxxxx/databasename",
+    "spaces": ["Lounge",
+                "Conference room"
+                ]
 }
 ```
 4. run `npm install`
