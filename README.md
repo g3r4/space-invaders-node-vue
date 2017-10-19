@@ -15,7 +15,7 @@ Get ready to invade your spaces!
 }
 ```
 4. run `npm install`
-5. run `node /bin/www` or `nodemon /bin/www`
+5. run `npm start` or `npm run devstart` (To use nodemon instead of node)
 6. go to http://localhost:3000
 7. you can also go to http://localhost:3000/api/setupInvasions to create some example records on the backend
 
