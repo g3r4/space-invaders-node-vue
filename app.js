@@ -21,6 +21,9 @@ mongoose.connect(config.getDbConnectionString(), {
   useMongoClient: true
 });
 
+var initializeConfig = require('./controllers/initializeConfigController');
+initializeConfig();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

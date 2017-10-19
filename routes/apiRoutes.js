@@ -11,11 +11,15 @@ router.get('/setupInvasions', function(req, res, next) {
     setupInvasions.Initialize(req, res);
 });
 
+router.get('/spaces', function(req, res){
+    api.findSpaces(req, res);
+});
+
 router.get('/invasions/id/:id', function(req, res){
     api.findById(req, res);
 });
 
-router.get('/invasions/q', function(req, res){
+router.get('/invasions', function(req, res){
     api.findByQuery(req, res);
 });
 

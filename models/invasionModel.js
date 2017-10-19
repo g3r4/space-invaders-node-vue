@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var invasionSchema = new Schema({
     email: String,
     invasion: String,
-    location: String,
+    space: String,
     when: Date,
     confirmed: Boolean
 });
