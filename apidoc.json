@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "description": "Endpoint descriptions and examples about how to use this API",
     "order": [
+        "GetSpaces",
         "GetInvasions",
         "PostInvasion",
         "DeleteInvasion"
